@@ -3,16 +3,15 @@
 #![allow(dead_code)]
 // bench docs: https://bheisler.github.io/criterion.rs/book/index.html
 
-use benches_bn254::{ark_g1_add, ark_g1_scalar_mul};
-use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use ark_bn254::{Fr as Scalar, G1Projective as G1};
 use ark_ff::UniformRand;
+use benches_bn254::{ark_g1_add, ark_g1_scalar_mul};
+use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use rand::thread_rng;
 
 pub fn bn254_operations(c: &mut Criterion) {
     let mut rng = thread_rng();
 
-    // Generate random points and scalars
     let p1 = G1::rand(&mut rng);
     let p2 = G1::rand(&mut rng);
     let s = Scalar::rand(&mut rng);
