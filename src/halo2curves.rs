@@ -10,6 +10,8 @@ pub fn h2c_g1_add(p1: G1, p2: G1) -> G1 { p1 + p2 }
 
 pub fn h2c_g1_scalar_mul(p: G1, s: Fr) -> G1 { p * s }
 
+pub fn h2c_scalar_mul(m: Fr, n: Fr) -> Fr { m * n }
+
 // ref:
 // https://github.com/privacy-scaling-explorations/halo2curves/blob/8771fe5a5d54fc03e74dbc8915db5dad3ab46a83/benches/pairing.rs
 pub fn h2c_pairing(p: G1, q: G2) -> Gt {
