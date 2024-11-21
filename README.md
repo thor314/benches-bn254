@@ -12,10 +12,11 @@
 
 ## bn256 benchmarks
 Benchmarks operations in the BN256 curve using the halo2curves library:
-* `G1 point addition`
-* `G1 scalar multiplication`
-* `Fr scalar field multiplication`
-* `BN256 pairing`
+* G1 point addition
+* G1 scalar multiplication
+* Fr scalar field multiplication
+* BN256 pairing
+* native `u64` multiplication as a point of reference
 
 ```sh
 cargo bench

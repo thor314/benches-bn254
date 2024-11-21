@@ -10,7 +10,9 @@ use halo2curves::{
     ff::Field,
     group::Group,
 };
-use rand::thread_rng;
+use rand::{thread_rng, Rng};
+
+fn native_mul(a: u64, b: u64) -> u64 { a * b }
 
 pub fn bn254_operations(c: &mut Criterion) {
     let mut rng = thread_rng();
@@ -22,6 +24,8 @@ pub fn bn254_operations(c: &mut Criterion) {
     let s = Fr::random(&mut rng);
     let m = Fr::random(&mut rng);
     let n = Fr::random(&mut rng);
+    let x = rng.gen::<u64>();
+    let y = rng.gen::<u64>();
 
     let mut group = c.benchmark_group("BN254");
 
@@ -36,6 +40,8 @@ pub fn bn254_operations(c: &mut Criterion) {
     group.bench_function("Fr scalar field multiplication", |b| {
         b.iter(|| black_box(h2c_scalar_mul(m, n)))
     });
+
+    group.bench_function("native mul", |b| b.iter(|| black_box(native_mul(x, y))));
 
     group.finish();
 }
