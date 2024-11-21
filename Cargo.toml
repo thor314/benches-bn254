@@ -9,7 +9,8 @@ version    ="0.1.0"
 [dependencies]
 anyhow   ="1.0"
 log       ="0.4" 
-
+rand = "0.8"
+halo2curves = "0.7"
 
 [dev-dependencies]
 # rstest    ="0.18"         # testing convenience proc-macros
@@ -17,5 +18,5 @@ log       ="0.4"
 criterion ="0.5"
 
 [[bench]]
-name = "bench"
+name = "h2c"
 harness = false

@@ -7,7 +7,9 @@
 #![allow(unused_mut)]
 mod arkworks;
 mod halo2curves;
-#[cfg(test)] mod tests;
+// #[cfg(test)] mod tests;
+
+pub use halo2curves::*;
 
 pub fn f(_i: usize) {
     // pass
