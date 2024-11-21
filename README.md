@@ -9,6 +9,16 @@
   </a>
   </div>
 
-Benchmarks for:
-- `BN254` in `halo2curves`
-- `BN256` in `ark_bn254`
+
+## bn256 benchmarks
+Benchmarks operations in the BN256 curve using the halo2curves library:
+* `G1 point addition`
+* `G1 scalar multiplication`
+* `Fr scalar field multiplication`
+* `BN256 pairing`
+
+```sh
+cargo bench
+# or
+just bench
+```

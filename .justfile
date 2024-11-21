@@ -22,6 +22,9 @@ export RUST_LOG := "info"
 @just:
     just --list
 
+bench:
+    cargo bench
+
 build:
     cargo build -r
 

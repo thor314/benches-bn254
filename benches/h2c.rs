@@ -3,10 +3,10 @@
 #![allow(dead_code)]
 // bench docs: https://bheisler.github.io/criterion.rs/book/index.html
 
-use benches_bn254::{h2c_g1_add, h2c_g1_scalar_mul, h2c_scalar_mul};
+use benches_bn254::{h2c_g1_add, h2c_g1_scalar_mul, h2c_pairing, h2c_scalar_mul};
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use halo2curves::{
-    bn256::{Fr, G1},
+    bn256::{Fr, G1, G2},
     ff::Field,
     group::Group,
 };
@@ -18,6 +18,7 @@ pub fn bn254_operations(c: &mut Criterion) {
     // Generate random points and scalars
     let p1 = G1::random(&mut rng);
     let p2 = G1::random(&mut rng);
+    let q = G2::random(&mut rng);
     let s = Fr::random(&mut rng);
     let m = Fr::random(&mut rng);
     let n = Fr::random(&mut rng);
@@ -29,6 +30,8 @@ pub fn bn254_operations(c: &mut Criterion) {
     group.bench_function("G1 scalar multiplication", |b| {
         b.iter(|| black_box(h2c_g1_scalar_mul(p1, s)))
     });
+
+    group.bench_function("Pairing", |b| b.iter(|| black_box(h2c_pairing(p1, q))));
 
     group.bench_function("Fr scalar field multiplication", |b| {
         b.iter(|| black_box(h2c_scalar_mul(m, n)))
