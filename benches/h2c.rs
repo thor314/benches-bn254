@@ -14,7 +14,7 @@ use rand::{thread_rng, Rng};
 
 fn native_mul(a: u64, b: u64) -> u64 { a * b }
 
-pub fn bn254_operations(c: &mut Criterion) {
+pub fn h2c_bn256_operations(c: &mut Criterion) {
     let mut rng = thread_rng();
 
     // Generate random points and scalars
@@ -27,7 +27,7 @@ pub fn bn254_operations(c: &mut Criterion) {
     let x = rng.gen::<u64>();
     let y = rng.gen::<u64>();
 
-    let mut group = c.benchmark_group("BN254");
+    let mut group = c.benchmark_group("halo2curves BN256");
 
     group.bench_function("G1 point addition", |b| b.iter(|| black_box(h2c_g1_add(p1, p2))));
 
@@ -46,5 +46,5 @@ pub fn bn254_operations(c: &mut Criterion) {
     group.finish();
 }
 
-criterion_group!(benches, bn254_operations);
+criterion_group!(benches, h2c_bn256_operations);
 criterion_main!(benches);

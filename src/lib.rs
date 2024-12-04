@@ -9,8 +9,8 @@ mod arkworks;
 mod halo2curves;
 // #[cfg(test)] mod tests;
 
-pub use halo2curves::*;
 pub use arkworks::*;
+pub use halo2curves::*;
 
 pub fn f(_i: usize) {
     // pass
